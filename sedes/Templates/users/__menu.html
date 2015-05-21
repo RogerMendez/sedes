@@ -1,0 +1,22 @@
+<ul class="v-menu block-shadow-impact min-size-required">
+    <li class="menu-title">
+        Opciones Usuario
+    </li>
+    <li>
+        {% if request.session.perfil %}
+            <a href="{% url 'users.views.change_profile' %}">
+                <span class="mif-user icon"></span> Modificar Perfil
+            </a>
+        {% else %}
+            <a href="{% url 'users.views.complete_profile' %}">
+                <span class="mif-user icon"></span> Completar Perfil
+            </a>
+        {% endif %}
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a href="{% url 'users.views.logout_user' %}" class="fg-red">
+            <span class="mif-cancel icon"></span> Cerrar Sesion
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block cuerpo %}
+    <div class="row cells12">
+        <div class="cell colspan9">
+            <form action="" method="post">{% csrf_token %}
+                <fieldset>
+                    <legend>{% block legend %}
+                        Formulario
+                    {% endblock %}</legend>
+                    {% block cuerpo_form %}
+                        {% for field in formulario %}
+                            {% if field.errors %}
+                                <div class="mypadding2 bg-red fg-white margin10 no-margin-right no-margin-left">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                            {{ field.label_tag }}
+                            <div class="input-control text full-size {% if field.errors %}error{% endif %}">
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                    {% endblock %}
+                    <p class="padding20">
+                        <input type="submit" value="{% block submit %}Guardar{% endblock %}" class="button success block-shadow-success text-shadow"/>
+                        <a href="{% block cancel %}javascript:history.go(-1){% endblock %}" class="button danger block-shadow-danger text-shadow">Cancelar</a>
+                    </p>
+                </fieldset>
+            </form>            
+        </div>
+        <div class="cell colspan3"></div>
+    </div>
+{% endblock %}

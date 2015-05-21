@@ -1,0 +1,172 @@
+<header class="app-bar fixed-top" data-role="appbar">
+    <a href="/" class="app-bar-element branding">
+        <img src="{{ STATIC_URL }}images/wn8.png" style="height: 28px; display: inline-block; margin-right: 10px;"> SEDES
+    </a>
+
+    <ul class="app-bar-menu">
+        <li>
+            <a href="{% url 'users.views.login_user' %}">Iniciar Sesion</a>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">Base CSS</a>
+            <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                <li class="disabled"><a href="overview.html">Overview</a></li>
+                <li class="divider"></li>
+                <li><a href="grid.html">Grid system</a></li>
+                <li><a href="typography.html">Typography</a></li>
+                <li><a href="tables.html">Tables</a></li>
+                <li><a href="inputs.html">Forms &amp; Inputs</a></li>
+                <li><a href="buttons.html">Buttons</a></li>
+                <li><a href="images.html">Images</a></li>
+                <li><a href="font.html">Metro Icon Font</a></li>
+                <li class="divider"></li>
+                <li><a href="colors.html">Colors</a></li>
+                <li><a href="helpers.html">Helpers classes</a></li>
+                <li class="divider"></li>
+                <li class="disabled"><a href="responsive.html">Responsive</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">Widgets</a>
+            <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                <li class="disabled"><a href="#">Overview</a></li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle">Utils</a>
+                    <ul class="d-menu" data-role="dropdown">
+                        <li><a href="easing.html">Easing functions</a></li>
+                        <li class="disabled"><a href="precode.html">PreCode</a></li>
+                    </ul>
+                </li>
+                <li class="divider"></li>
+                <li><a href="tiles.html">Tiles</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle">Controls</a>
+                    <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                        <li><a href="accordion.html">Accordion</a></li>
+                        <li><a href="appbar.html">Application bar</a></li>
+                        <li><a href="button-groups.html">Button groups</a></li>
+                        <li><a href="menu.html">Menus</a></li>
+                        <li><a href="sidebar.html">Sidebar</a></li>
+                        <li><a href="tabcontrol.html">Tab Control</a></li>
+                        <li><a href="treeview.html">TreeView</a></li>
+                        <li><a href="listview.html">ListView</a></li>
+                        <li><a href="sliders.html">Slider</a></li>
+                        <li><a href="stepper.html">Stepper</a></li>
+                        <li><a href="wizard.html">Wizard</a></li>
+                        <li><a href="wizard2.html">Wizard2</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">Visualization</a>
+                    <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                        <li><a href="carousel.html">Carousel</a></li>
+                        <li class="no-display"><a href="windows.html">Windows</a></li>
+                        <li><a href="popovers.html">Popovers</a></li>
+                        <li><a href="progressbar.html">Progress Bar</a></li>
+                        <li><a href="panels.html">Panels</a></li>
+                        <li><a href="rating.html">Rating</a></li>
+                        <li><a href="preloaders.html">Preloaders</a></li>
+                        <li><a href="hints.html">Hints</a></li>
+                        <li><a href="streamer.html">Streamer</a></li>
+                        <li><a href="presenter.html">Presenter</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">Information</a>
+                    <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                        <li><a href="notify.html">Notify system</a></li>
+                        <li><a href="dialog.html">Dialogs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle">Date &amp; Time</a>
+                    <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="datepicker.html">Datepicker</a></li>
+                        <li><a href="countdown.html">Countdown</a></li>
+                    </ul>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#" class="dropdown-toggle">Third-party</a>
+                    <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                        <li><a href="select2.html">Select2</a></li>
+                        <li><a href="datatables.html">DataTables</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="dropdown-toggle">Templates</a>
+            <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                <li><a href="templates/start-screen.html">Start screen</a></li>
+                <li><a href="templates/news-portal.html">News Portal</a></li>
+                <li><a href="templates/login.html">Login form</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="dropdown-toggle">Community</a>
+            <ul class="d-menu" data-role="dropdown" data-no-close="true">
+                <li><a href="http://forum.metroui.org.ua">Forum</a></li>
+                <li><a href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
+                <li class="divider"></li>
+                <li><a href="license.html">License</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="app-bar-element place-right">
+        <a class="dropdown-toggle fg-white">
+            <span class="mif-enter"></span>
+            {% if user.is_authenticated %}
+                Info
+            {% else %}
+                Login
+            {% endif %}
+        </a>
+        <div class="app-bar-drop-container bg-white fg-dark place-right" data-role="dropdown" data-no-close="true">
+            <div class="padding20">
+                {% if user.is_authenticated %}
+                    <div style="width: 200px;">
+                        <span class="mif-4x mif-user"></span>
+                        <p> <strong>Usuario: </strong>{{ user.username }}</p>
+                        <p>
+                            {% if request.session.perfil %}
+                                <a href="{% url 'users.views.change_profile' %}" class="button primary">Modificar Perfil</a>
+                            {% else %}
+                                <a href="{% url 'users.views.complete_profile' %}" class="button info">Completar Perfil</a>
+                            {% endif %}
+                        </p>
+                        <p>
+                            <a href="{% url 'users.views.logout_user' %}" class="button danger block-shadow-danger">
+                                <span class="mif-cancel"></span> Cerrar Sesion
+                            </a>
+                        </p>
+                    </div>
+                {% else %}
+                    <form action="{% url 'users.views.login_user' %}" method="post">{% csrf_token %}
+                        <h4 class="text-light">Iniciar Sesion</h4>
+                        <div class="input-control text">
+                            <span class="mif-user prepend-icon"></span>
+                            <input type="text" placeholder="Usuario" id="username" name="username">
+                        </div>
+                        <div class="input-control text">
+                            <span class="mif-lock prepend-icon"></span>
+                            <input type="password" placeholder="Contraseña" id="password" name="password">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="button success">Entrar</button>
+                            <a href="/" class="button danger">Cancelar</a>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="app-bar-divider place-right"></div>
+
+    <span class="app-bar-pull"></span>
+</header>

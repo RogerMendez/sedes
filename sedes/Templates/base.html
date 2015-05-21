@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/metro.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/metro-icons.css"/>
+    <link href="{{ STATIC_URL }}css/docs.css" rel="stylesheet">
+
+    <link href="https://google-code-prettify.googlecode.com/svn/loader/prettify.css" type="text/css" rel="stylesheet">
+
+    <script src="{% static "js/jquery-2.1.3.min.js" %}"></script>
+    <script src="{{ STATIC_URL }}js/metro.js"></script>
+    <script src="{{ STATIC_URL }}js/docs.js"></script>
+    <script src="{{ STATIC_URL }}js/prettify/run_prettify.js"></script>
+    <script src="{{ STATIC_URL }}js/ga.js"></script>
+    <title>{% block title %}Sedes{% endblock %}</title>
+</head>
+<body>
+{% include '__menu.html' %}
+    <div class="container page-content">
+        <div class="grid">
+            <div class="row cells12">
+                <div class="cell colspan3">
+                    {% block menu_izp %}
+                        <ul class="v-menu block-shadow-impact min-size-required">
+                            <li class="menu-title">First Title</li>
+                            <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
+                            <li class="divider"></li>
+                            <li class="menu-title">Second Title</li>
+                            <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
+                            <li><a href="#"><span class="mif-calendar icon"></span> Calendar</a></li>
+                            <li><a href="#"><span class="mif-image icon"></span> Photo</a></li>
+                            <li class="divider"></li>
+                            <li class="menu-title">Third Title</li>
+                            <li class="">
+                                <a href="#" class="dropdown-toggle"><span class="mif-my-location icon"></span> Location</a>
+                                <ul style="display: none;" class="d-menu" data-role="dropdown">
+                                    <li class="menu-title">Title for dropdown</li>
+                                    <li><a href="#">Коллеги</a></li>
+                                    <li><a href="#">Интересно</a></li>
+                                    <li>
+                                        <div class="item-block text-center">
+                                            <button class="square-button"><img class="icon" src="metro/images/round.png"></button>
+                                            <button class="square-button"><img class="icon" src="metro/images/location.png"></button>
+                                            <button class="square-button"><img class="icon" src="metro/images/group.png"></button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle">Еще...</a>
+                                        <ul class="d-menu" data-role="dropdown">
+                                            <li><a href="#">Коллеги</a></li>
+                                            <li><a href="#">Интересно</a></li>
+                                            <li>
+                                                <div class="item-block text-center bg-grayLighter">
+                                                    <button class="round-button"><img class="icon" src="metro/images/round.png"></button>
+                                                    <button class="round-button"><img class="icon" src="metro/images/location.png"></button>
+                                                    <button class="round-button"><img class="icon" src="metro/images/group.png"></button>
+                                                    <button class="round-button"><img class="icon" src="metro/images/power.png"></button>
+                                                </div>
+                                            </li>
+                                            <li class="divider"></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#"><span class="mif-bubbles icon"></span> Community</a></li>
+                        </ul>
+                    {% endblock %}
+                </div>
+                <div class="cell colspan9">
+                    {% if messages %}
+                        <div class="padding10 bg-blue fg-white margin10 no-margin-right no-margin-left">
+                            {% for message in messages %}
+                                <div class="">
+                                    {{ message|safe }}.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% block cuerpo %}
+                        <h1>Este es el cuerpo</h1>
+                        {{ _("body") }}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-grayLighter">
+        <div class="container">
+            <p class="text-center">
+                Ivan Gutierrez
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
