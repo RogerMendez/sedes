@@ -1,0 +1,35 @@
+<h3>{{ grupo.variable }}</h3>
+<div id="contenidotabla" class="bd-black">
+    <table class="table bordered hovered striped">
+        <tbody>
+            <thead>
+                <tr>
+                    <th>Grupo</th>
+                    <th>Grupo de Edad</th>
+                    <th>Hombre</th>
+                    <th>Mujer</th>
+                    <th>Total</th>
+                    <th>Porcentaje</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for po in poblaciones %}
+                    <tr>
+                        <td>{{ po.grupo }}</td>
+                        <td>{{ po.grupo_edad }}</td>
+                        <td>{{ po.hombre }}</td>
+                        <td>{{ po.mujer }}</td>
+                        <td>{{ po.total }}</td>
+                        <td>{{ po.porcentaje }}</td>
+                        <td>
+                            <a href="{% url 'inscripcion.views.asignar_grupo_actividad_inscripcion' grupo.id inscripcion_actividad.id po.id %}" class="button success">
+                                <span class="mif-folder-plus"></span> Asignar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+{% extends 'form_upload.html' %}
+{% block title %}
+Modificar Carrera
+{% endblock %}
+{% block legend %}
+ <h2><span class="mif-home icon"></span>  Actualizar Centro de Salud</h2>
+{% endblock %}
+{% block menu_izp %}
+{% include 'centrosalud/__menu.html' %}
+{% endblock %}
+{% block submit %}Modificar{% endblock %}
+{% block mapa %}
+    <div id="mapa" style="height: 500px;"></div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script language="javascript">
+    $(document).ready(function(){
+        var map;
+        var centro = new google.maps.LatLng({{ centro.latitud }},{{ centro.longitud }});
+        var geocoder = new google.maps.Geocoder();
+
+        var opciones = {
+            zoom : 15,
+            center: centro,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("mapa"), opciones);
+
+        var marker = new google.maps.Marker({
+            title:"Mi Posicion",
+            map: map,
+            position: new google.maps.LatLng({{ centro.latitud }},{{ centro.longitud }}),
+            draggable: true,
+            animation: google.maps.Animation.DROP
+        });
+        google.maps.event.addListener(marker, 'dragend', function(){ openInfoWindow(marker); });
+        google.maps.event.addListener(marker, 'click', function(){ openInfoWindow(marker); });
+    });
+    function openInfoWindow(markerdgg){
+        var markerLatLng = markerdgg.getPosition();
+        updatePosition(markerLatLng);
+    }
+    function updatePosition(latLng)
+    {
+        $('#id_latitud').val(latLng.lat());
+        $('#id_longitud').val(latLng.lng());
+    }
+</script>
+{% endblock %}

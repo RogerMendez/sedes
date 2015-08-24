@@ -9,9 +9,23 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('centrosalud', '0001_initial'),
     ]
 
     operations = [
+        migrations.CreateModel(
+            name='Centro_Usuario',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('fecha_registro', models.DateTimeField(auto_now_add=True, null=True)),
+                ('centro', models.ForeignKey(to='centrosalud.Centro')),
+                ('usuario', models.ForeignKey(to=settings.AUTH_USER_MODEL, unique=True)),
+            ],
+            options={
+                'ordering': ['centro'],
+            },
+            bases=(models.Model,),
+        ),
         migrations.CreateModel(
             name='Perfil',
             fields=[
@@ -27,6 +41,7 @@ class Migration(migrations.Migration):
                 'ordering': ['usuario'],
                 'verbose_name': 'Perfil',
                 'verbose_name_plural': 'Perfiles',
+                'permissions': (('usuarios', 'Permiso de Usuarios'),),
             },
             bases=(models.Model,),
         ),

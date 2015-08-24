@@ -20,6 +20,9 @@
                             </div>
                         {% endfor %}
                     {% endblock %}
+                    {% block mapa %}
+                    
+                    {% endblock %}
                     <p class="padding20">
                         <input type="submit" value="{% block submit %}Guardar{% endblock %}" class="button success block-shadow-success text-shadow"/>
                         <a href="{% block cancel %}javascript:history.go(-1){% endblock %}" class="button danger block-shadow-danger text-shadow">Cancelar</a>
@@ -29,4 +32,11 @@
         </div>
         <div class="cell colspan3"></div>
     </div>
+        <script>
+        $(document).ready(function(){
+            var div = $('input[type=checkbox]').parent();
+            div.removeClass('text');
+            div.removeClass('input-control');
+        });
+    </script>
 {% endblock %}

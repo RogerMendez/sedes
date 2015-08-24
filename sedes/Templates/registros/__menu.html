@@ -1,0 +1,10 @@
+<ul class="sidebar2 ">
+    <li class="">
+        <a href="">Actividades</a>
+    </li>
+    {% for act in actividades_centro %}
+        <li class="stick bg-{% cycle 'red' 'blue' 'black' 'lime' 'green' 'grayDarker' 'orange' 'violed' 'indigo' 'cyan' 'amber' 'magenta' 'cobalt' 'pink' 'teal' %}">
+            <a href="{% url 'registros.views.grupo_actividad' act.actividad.id %}">{{ act.actividad.nombre }}</a>
+        </li>
+    {% endfor %}
+</ul>

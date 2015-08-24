@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+Centros de salud
+{% endblock %}
+
+{% block menu_izp %}
+{% include 'gestion/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+<div class="row cells2">
+    <div class="cell">
+        <h3 class="align-center">Centros</h3>
+        <table class="table border bordered hover">
+            <thead>
+            <tr>
+                <th width="50px">#</th>
+                <th>Nombre</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for centro in centros_no_asignados %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ centro.nombre }}</td>
+                        <td>
+                            <a href="{% url 'gestion.views.add_centro_asignacion' centro.id %}" class="button success cycle-button">
+                                <span class="mif-arrow-right"></span>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="cell">
+        <h3 class="align-center"> Centros Asignados</h3>
+        <table class="table border bordered hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th width="50px">#</th>
+                <th>Nombre</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for asignacion in gestion_centros %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'gestion.views.remove_centro_asignacion' asignacion.id %}" class="button warning cycle-button">
+                                <span class="mif-arrow-left"></span>
+                            </a>
+                        </td>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ asignacion.centro.nombre }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

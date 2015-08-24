@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block cuerpo %}
-    <div class="row cells12">
+        <div class="row cells12">
         <div class="cell colspan9">
             <form action="" method="post">{% csrf_token %}
                 <fieldset>
@@ -18,7 +18,15 @@
                             <div class="input-control text full-size {% if field.errors %}error{% endif %}">
                                 {{ field }}
                             </div>
+                            {% if field.help_text %}
+                                    <p>
+                                        <small class="fg-green">{{ field.help_text }}</small>
+                                    </p>
+                                {% endif %}
                         {% endfor %}
+                    {% endblock %}
+                    {% block mapa %}
+                                    
                     {% endblock %}
                     <p class="padding20">
                         <input type="submit" value="{% block submit %}Guardar{% endblock %}" class="button success block-shadow-success text-shadow"/>
@@ -29,4 +37,11 @@
         </div>
         <div class="cell colspan3"></div>
     </div>
+    <script>
+        $(document).ready(function(){
+            var div = $('input[type=checkbox]').parent();
+            div.removeClass('text');
+            div.removeClass('input-control');
+        });
+    </script>
 {% endblock %}

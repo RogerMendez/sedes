@@ -1,3 +1,4 @@
+{# encoding:utf-8 #}
 {% load staticfiles %}
 <!doctype html>
 <html lang="es">
@@ -6,14 +7,15 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/metro.css"/>
     <link rel="stylesheet" href="{{ STATIC_URL }}css/metro-icons.css"/>
     <link href="{{ STATIC_URL }}css/docs.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/mystyle.css" rel="stylesheet">
 
     <link href="https://google-code-prettify.googlecode.com/svn/loader/prettify.css" type="text/css" rel="stylesheet">
 
     <script src="{% static "js/jquery-2.1.3.min.js" %}"></script>
     <script src="{{ STATIC_URL }}js/metro.js"></script>
-    <script src="{{ STATIC_URL }}js/docs.js"></script>
+    <!--script src="{{ STATIC_URL }}js/docs.js"></script-->
     <script src="{{ STATIC_URL }}js/prettify/run_prettify.js"></script>
-    <script src="{{ STATIC_URL }}js/ga.js"></script>
+    <!--script src="{{ STATIC_URL }}js/ga.js"></-script-->
     <title>{% block title %}Sedes{% endblock %}</title>
 </head>
 <body>
@@ -23,7 +25,7 @@
             <div class="row cells12">
                 <div class="cell colspan3">
                     {% block menu_izp %}
-                        <ul class="v-menu block-shadow-impact min-size-required">
+                        <!--ul class="v-menu block-shadow-impact min-size-required">
                             <li class="menu-title">First Title</li>
                             <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
                             <li class="divider"></li>
@@ -65,12 +67,12 @@
                                 </ul>
                             </li>
                             <li><a href="#"><span class="mif-bubbles icon"></span> Community</a></li>
-                        </ul>
+                        </ul-->
                     {% endblock %}
                 </div>
                 <div class="cell colspan9">
                     {% if messages %}
-                        <div class="padding10 bg-blue fg-white margin10 no-margin-right no-margin-left">
+                        <div class="padding10 bg-red fg-white margin10 no-margin-right no-margin-left">
                             {% for message in messages %}
                                 <div class="">
                                     {{ message|safe }}.
@@ -79,19 +81,46 @@
                         </div>
                     {% endif %}
                     {% block cuerpo %}
-                        <h1>Este es el cuerpo</h1>
-                        {{ _("body") }}
+
                     {% endblock %}
                 </div>
             </div>
         </div>
     </div>
-    <footer class="bg-grayLighter">
-        <div class="container">
-            <p class="text-center">
-                Ivan Gutierrez
-            </p>
-        </div>
+    <footer class="bg-grayLighter align-center">
+    <div class="cell colspan2 padding20 no-padding-top no-padding-bottom">
+                        <h3>ACERCA DEL AUTOR:</h3>
+                        <p class="text-secondary">
+                            Hola mi nombre <strong>Ivan Gutierrez Vega</strong> soy autor de sistema !!!
+                        </p>
+                        <p class="text-secondary">
+                            siguenos en:
+                        </p>
+                        <div>
+                                            <div class="margin10">
+
+                                                <button class="image-button primary bg-lighterBlue block-shadow ">
+                                                    Twiter
+                                                    <span class="icon mif-twitter bg-lighterBlue block-shadow"></span>
+                                                </button>
+                                                <button class="image-button primary bg-red block-shadow ">
+                                                    Google Plius
+                                                    <span class="icon mif-google-plus bg-red block-shadow"></span>
+                                                </button>
+                                                <button class="image-button primary bg-darkCobalt block-shadow">
+                                                    Facebook
+                                                    <span class="icon mif-facebook bg-darkCobalt block-shadow"></span>
+                                                </button>
+
+                                            </div>
+                        </div>
+                        <br>
+                        <div class="bg-white bg-red fg-white padding10 align-center no-display" id="job">
+                            Open for job offer from EU, Canada, or USA (moving).
+                        </div>
+                        <hr class="thin" style="margin-top: 20px">
+
+                    </div>
     </footer>
 </body>
 </html>

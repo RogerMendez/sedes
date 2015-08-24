@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Centros de salud
+{% endblock %}
+
+{% block menu_izp %}
+{% include 'centrosalud/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <div class="row cells1">
+    <h2> <span class="mif-clipboard icon"></span> Listado de Centros de Salud</h2>
+    <div class="cell">
+            <table class="table striped     ">
+                <thead>
+                    <tr>
+                        <th width="30px">Nro.</th>
+                        <th>Centro de Salud</th>
+                        <th>Telefono</th>
+                        <th>Responsable</th>
+                        <th>Modificar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lista in centro %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ lista.nombre }}</td>
+                            <td>{{ lista.telefono }}</td>
+                            <td>{{ lista.responsable }}</td>
+                            <td><a href="{% url 'centrosalud.views.update_centro' lista.id %}"> <span class="mif-pencil icon fg-blue"></span> Modificar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+    </div>
+</div>
+{% endblock %}

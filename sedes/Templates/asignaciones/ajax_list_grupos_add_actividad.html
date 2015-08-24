@@ -1,0 +1,36 @@
+<h4 class="align-center">{{ inscripcion_actividad.actividad.nombre }}</h4>
+<ul class="v-menu context block-shadow-impact">
+    {% for grupo in grupos %}
+        <li class="">
+            <a href="#" class="grupos" onclick="showDialog('#dialog9', {{ grupo.id }})">
+                <span class="icon mif-folder"></span> {{ grupo.variable|truncatewords:4 }}
+            </a>
+        </li>
+        <li class="divider"></li>
+    {% endfor %}
+</ul>
+
+<div data-role="dialog" id="dialog9" class="padding20 dialog" data-close-button="true" data-windows-style="true" data-overlay="true" data-overlay-color="op-dark">
+    <div id="contenidowindow">
+
+    </div>
+    <span class="dialog-close-button"></span>
+</div>
+<script>
+    function showDialog(id, grupo_id){
+
+        $.ajax({
+            data:{'grupo': grupo_id, 'actividad_inscripcion': {{ inscripcion_actividad.id }} },
+            url:'{% url "inscripcion.views.ajax_list_poblacion_add_grupo" %}',
+            type: "GET",
+            success: function(data){
+                $('#contenidowindow').html(data);
+            },
+            failure: function(data){
+                console.log('error');
+            }
+        });
+        var dialog = $(id).data('dialog');
+        dialog.open();
+    }
+</script>

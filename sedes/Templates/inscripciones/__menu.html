@@ -1,0 +1,20 @@
+<ul class="v-menu block-shadow-impact min-size-required">
+    <li class="menu-title">
+        Opciones
+    </li>
+    <li>
+        <a href="{% url 'inscripcion.views.index_inscripcion' %}"  class="fg-darkBlue">
+            <span class="mif-home icon"></span> Listar Inscripciones
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'inscripcion.views.list_centros_inscribir' %}"  class="fg-darkBlue">
+            <span class="mif-plus icon"></span> Nueva Inscripcion
+        </a>
+     </li>
+    <li>
+        <a href="{% url 'inscripcion.views.index_asignacion' %}" class="fg-darkBlue">
+            <span class="mif-ambulance icon"></span> Asignar Actividades
+        </a>
+    </li>
+</ul>

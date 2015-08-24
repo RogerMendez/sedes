@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+Inscripciones
+{% endblock %}
+{% block menu_izp %}
+{% include 'inscripciones/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-clipboard icon"></span>Listado de Inscripciones
+    </h2>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th>Fecha Registro</th>
+                <th>Gestion</th>
+                <th>Centro de Salud</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for insc in inscripciones %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ insc.fecha_registro }}</td>
+                    <td>{{ insc.gestion.gestion }}</td>
+                    <td>{{ insc.centro.nombre }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

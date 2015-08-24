@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+Usuarios
+{% endblock %}
+{% block menu_izp %}
+{% include 'add_users/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-hotel icon"></span> Centro {{ centro.nombre }}
+    </h2>
+    <hr/>
+    <h3>Listado de Usuarios Sin Asignar</h3>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th>Nombre Usuario</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in usuarios %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        <a href="{% url 'users.views.add_usuario_centro' centro.id user.id %}">Asignar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

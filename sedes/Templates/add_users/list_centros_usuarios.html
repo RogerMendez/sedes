@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+Centros de salud
+{% endblock %}
+
+{% block menu_izp %}
+{% include 'add_users/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-clipboard icon"></span> Listado de Centros de Salud
+    </h2>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">Nro.</th>
+                <th>Centro de Salud</th>
+                <th>Telefono</th>
+                <th>Responsable</th>
+                <th>Cantidad de Usuarios</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lista in centros %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ lista.nombre }}</td>
+                    <td>{{ lista.telefono }}</td>
+                    <td>{{ lista.responsable }}</td>
+                    <td>
+                        {{ lista.centro_usuario_set.select_related.count }} Asignados
+                    </td>
+                    <td>
+                        <a href="{% url 'users.views.users_centro' lista.id %}">
+                            <span class="mif-users icon"></span> Usuarios
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

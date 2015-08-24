@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}
+Centros de salud
+{% endblock %}
+
+{% block menu_izp %}
+{% include 'centrosalud/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+<div class="row cells1">
+    <div class="cell">
+        <h2>
+            <span class="mif-home icon"></span> Centro <strong>{{ centro.nombre }}</strong>
+        </h2>
+        <p class="text-ellipsis">
+            <blockquote>
+                <strong>Direccion: </strong> {{ centro.direccion }}
+            </blockquote>
+        </p>
+    </div>
+</div>
+<div class="row cells2">
+    <div class="cell">
+        <h3 class="align-center">Actividades</h3>
+        <table class="table bordered hover">
+            <thead>
+            <tr>
+                <th width="50px">#</th>
+                <th>Nombre</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for actividad in actividades %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ actividad.nombre }}</td>
+                        <td>
+                            <a href="{% url 'centrosalud.views.asignar_actividad' centro.id actividad.id %}">Asignar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="cell">
+        <h3 class="align-center">Asignados</h3>
+        <table class="table bordered hover">
+            <thead>
+            <tr>
+                <th width="50px">#</th>
+                <th>Nombre</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for asignado in asignados %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ asignado.actividad.nombre }}</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

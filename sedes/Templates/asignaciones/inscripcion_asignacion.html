@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}
+Inscripciones
+{% endblock %}
+{% block menu_izp %}
+{% include 'inscripciones/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <div class="row cells9">
+        <h2><span class="mif-ambulance"></span> Informacion de Centro </h2>
+        <div class="cell colspan4">
+            <p class="text-default">
+                <strong>Centro de salud: </strong>{{ inscripcion.centro.nombre }}
+            </p>
+            <p class="text-default">
+                <strong>Direccion: </strong>{{ inscripcion.centro.direccion }}
+            </p>
+        </div>
+        <div class="cell colspan4">
+            <p class="text-default">
+                <strong>Telefono: </strong>{{ inscripcion.centro.telefono }}
+            </p>
+            <p class="text-default">
+                <strong>Responsable: </strong>{{ inscripcion.centro.responsable }}
+            </p>
+        </div>
+    </div>
+    <div class="row cells9">
+        <div class="cell colspan5">
+            <h4 class="align-center">Actividades</h4>
+            <table class="table striped bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Actividad</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for actividad in actividades %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ actividad.nombre }}</td>
+                            <td>
+                                <a href="{% url 'inscripcion.views.add_actividad_inscripcion' inscripcion.id actividad.id %}" class="button cycle-button success block-shadow-success">
+                                    +
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="cell colspan4">
+            <h4 class="align-center">Asignados</h4>
+            <table class="table striped bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>#</th>
+                        <th>Actividad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for asignar in asignados %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'inscripcion.views.remove_asignacion' asignar.id %}" class="button cycle-button danger block-shadow-danger">
+                                    -
+                                </a>
+                            </td>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ asignar.actividad.nombre }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

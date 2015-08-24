@@ -1,0 +1,21 @@
+<ul class="v-menu block-shadow-impact min-size-required">
+    <li class="menu-title">
+        Opciones
+    </li>
+    <li>
+        <a href="{% url 'actividad.views.index_actividad' %}"  class="fg-darkBlue">
+            <span class="mif-home icon"></span> Listar Actividades
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'actividad.views.new_actividad' %}"  class="fg-darkBlue">
+            <span class="mif-plus icon"></span> Nueva Actividad
+        </a>
+     </li>
+    <li class="divider"></li>
+    <li>
+        <a href="{% url 'actividad.views.list_change_actividad' %}" class="fg-darkBlue">
+            <span class="mif-pencil icon"></span> Modificar Actividad
+        </a>
+    </li>
+</ul>

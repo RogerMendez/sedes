@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}
+Inscripciones
+{% endblock %}
+{% block menu_izp %}
+{% include 'inscripciones/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <div class="row cells9">
+        <h2><span class="mif-ambulance"></span> Informacion de Centro </h2>
+        <div class="cell colspan4">
+            <p class="text-default">
+                <strong>Centro de salud: </strong>{{ inscripcion.centro.nombre }}
+            </p>
+            <p class="text-default">
+                <strong>Direccion: </strong>{{ inscripcion.centro.direccion }}
+            </p>
+        </div>
+        <div class="cell colspan4">
+            <p class="text-default">
+                <strong>Telefono: </strong>{{ inscripcion.centro.telefono }}
+            </p>
+            <p class="text-default">
+                <strong>Responsable: </strong>{{ inscripcion.centro.responsable }}
+            </p>
+        </div>
+    </div>
+    <div class="row cells9">
+        <div class="cell colspan3">
+            <h4 class="align-center">Actividades</h4>
+            <ul class="v-menu context block-shadow-impact">
+                {% for a_i in actividades_inscripcion %}
+                    <li class="actividad">
+                        <a id="{{ a_i.id }}" href="{% url 'inscripcion.views.ajax_list_grupos_add_actividad' a_i.id %}" class="actividad">
+                            <span class="icon mif-cogs"></span> {{ a_i.actividad.nombre|truncatewords:3 }}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="cell colspan3" id="grupos_list">
+
+        </div>
+        <div class="cell colspan3" id="grupos_asignados">
+
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $('a.actividad').click(function(e){
+            e.preventDefault();
+            $('li.actividad').removeClass('active');
+            var actividad = $(this);
+            actividad.parent().addClass('active');
+            var url = actividad.attr('href');
+            var id = actividad.attr('id');
+            actualizar_grupos(url, id);
+        });
+        function actualizar_grupos(url, id){
+            $.ajax({
+                url:url,
+                type: "GET",
+                success: function(data){
+                    $('#grupos_list').html(data);
+                    $.ajax({
+                        data:{'actividad_inscripcion': id},
+                        url:"{% url 'inscripcion.views.ajax_list_grupos_asignados' %}",
+                        type: "GET",
+                        success: function(data){
+                            $('#grupos_asignados').html(data);
+                        },
+                        failure: function(data){
+                            console.log('error');
+                        }
+                    });
+                },
+                failure: function(data){
+                    console.log('error');
+                }
+            });
+        }
+    });
+    </script>
+{% endblock %}

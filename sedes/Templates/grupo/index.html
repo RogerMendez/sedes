@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+Grupos
+{% endblock %}
+{% block menu_izp %}
+{% include 'grupo/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-clipboard icon"></span>Listado de Grupo
+    </h2>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th>Nombre Grupo</th>
+                <th>Actividad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grupo in grupos %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ grupo.variable }}</td>
+                    <td>{{ grupo.actividad.nombre }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+Gestiones
+{% endblock %}
+{% block menu_izp %}
+{% include 'gestion/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-clipboard icon"></span>Listado de Gestiones
+    </h2>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th>Gestion</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for gestion in gestiones %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ gestion.gestion }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

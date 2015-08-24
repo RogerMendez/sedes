@@ -1,0 +1,41 @@
+th.rotate {
+  /* Something you can count on */
+  height: 140px;
+  white-space: nowrap;
+}
+
+th.rotate > div {
+  transform: 
+    /* Magic Numbers */
+    translate(0px, 51px)
+    /* 45 is really 360 - 45 */
+    rotate(270deg);
+  width: 5px;
+}
+th.rotate > div > span {
+  /*border-bottom: 1px solid #ccc;*/
+  padding: 5px 0px;
+}
+
+td.rotates {
+  /* Something you can count on */
+  /*height: 140px;*/
+  white-space: nowrap;
+}
+
+td.rotates > div {
+  /*transform:
+    /* Magic Numbers */
+    /*translate(0px, 51px)
+    /* 45 is really 360 - 45 */
+    /*rotate(270deg);*/
+  width: 5px;
+}
+td.rotates > div > span {
+  /*border-bottom: 1px solid #ccc;*/
+  padding: 0px 0px;
+}
+#contenidotabla{
+    height: 200px;
+    overflow: scroll;
+}

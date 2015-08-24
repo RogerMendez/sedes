@@ -37,6 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'gestion',
+    'centrosalud',
+    'actividad',
+    'grupo',
+    'inscripcion',
+    'registros',
 )
 
 MIDDLEWARE_CLASSES = (

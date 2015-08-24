@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+Actividades
+{% endblock %}
+{% block menu_izp %}
+{% include 'registros/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-clipboard icon"></span>Usted Pertenece al Centro <strong>{{ centro.nombre|upper }}</strong>
+    </h2>
+{% endblock %}

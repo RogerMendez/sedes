@@ -1,0 +1,19 @@
+<h4 class="align-center">Asignados</h4>
+<table class="table bordered hovered striped">
+    <thead>
+        <th></th>
+        <th>Grupo</th>
+    </thead>
+    <tbody>
+        {% for grupo in grupos_asignados %}
+            <tr>
+                <td>
+                    <a href="{% url 'inscripcion.views.remove_grupo_actividad_inscripcion' grupo.id %}" class="button cycle-button danger block-shadow-danger">
+                        -
+                    </a>
+                </td>
+                <td>{{ grupo.grupo.variable }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

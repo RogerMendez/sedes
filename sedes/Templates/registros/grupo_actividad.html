@@ -1,0 +1,180 @@
+{# encoding:utf-8 #}
+{% extends 'base.html' %}
+{% block title %}
+Actividades
+{% endblock %}
+{% block menu_izp %}
+{% include 'registros/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <div class="row">
+        <div class="cell">
+            <h2>
+                <span class="mif-medkit icon"></span> Usted Pertenece al Centro <strong>{{ centro.nombre|upper }}</strong>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+            <form action="" method="get">{% csrf_token %}
+                {% for field in formulario %}
+                    {{ field.label_tag }}
+                    <div class="input-control password" data-role="keypad" data-length="4">
+                        <input id="id_anho" name="anho" type="number" readonly="readonly" required="required" value="{{ anho }}">
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Ver" class="button success block-shadow-success text-shadow"/>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+
+            <hr/>
+            <table class="table bordered">
+                <thead>
+                <tr>
+                    <th align="char">Variable</th>
+                    <th class="rotate"><div><span>Enero</span></div></th>
+                    <th class="rotate"><div><span>Febrero</span></div></th>
+                    <th class="rotate"><div><span>Marzo</span></div></th>
+                    <th class="rotate"><div><span>Abril</span></div></th>
+                    <th class="rotate"><div><span>Mayo</span></div></th>
+                    <th class="rotate"><div><span>Junio</span></div></th>
+                    <th class="rotate"><div><span>Julio</span></div></th>
+                    <th class="rotate"><div><span>Agosto</span></div></th>
+                    <th class="rotate"><div><span>Septiembre</span></div></th>
+                    <th class="rotate"><div><span>Octubre</span></div></th>
+                    <th class="rotate"><div><span>Noviembre</span></div></th>
+                    <th class="rotate"><div><span>Diciembre</span></div></th>
+                    <th class="rotate"><div><span>Total</span></div></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% load helper_registro %}
+                {% for grupo in grupos %}
+                    <tr>
+                        <td>{{ grupo.variable }}</td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_enero:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_febrero:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_marzo:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_abril:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_mayo:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_junio:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_julio:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_agosto:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_septiembre:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_octubre:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_noviembre:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_diciembre:grupo.id|count_grupo_anho:anho }}</span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>{{ centro.id|count_grupo_centro_total:grupo.id|count_registros_anho:anho }}</span></div>
+                        </td>
+                        <td>
+                            {% if anho == fecha|date:"Y" or anho == None %}
+                                <a href="{% url 'registros.views.add_registro' grupo.id centro.id %}" class="button">
+                                    <span class="mif-plus"></span>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td>Poblacion Total</td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:1|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:2|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:3|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:4|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:5|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:6 |total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:7|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:8|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:9|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:10|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:11|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            <div><span>
+                                {{ centro.id|total_centro_actividad:actividad.id|total_centro_mes:12|total_registro_anho:anho }}
+                            </span></div>
+                        </td>
+                        <td class="rotates">
+                            {{ centro.id|total_centro_actividad:actividad.id|total_registro_anho:anho }}
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr/>
+        </div>
+    </div>
+{% endblock %}

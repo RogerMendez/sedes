@@ -1,0 +1,26 @@
+<ul class="v-menu block-shadow-impact min-size-required">
+    <li class="menu-title">
+        Opciones Usuario
+    </li>
+    <li>
+        <a href="{% url 'users.views.index_usuarios' %}">
+            <span class="mif-home icon"></span> Usuarios En Centro
+        </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a href="{% url 'users.views.list_centros' %}">
+            <span class="mif-hotel icon"></span> Centros
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'users.views.list_centros_usuarios' %}">
+            <span class="mif-users icon"></span> Usuarios Centros
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'users.views.new_user' %}">
+            <span class="mif-plus icon"></span> Nuevo Usuario
+        </a>
+    </li>
+</ul>

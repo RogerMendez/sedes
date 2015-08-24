@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+Actividades
+{% endblock %}
+{% block menu_izp %}
+{% include 'actividades/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-clipboard icon"></span>Listado de Actividades
+    </h2>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th>Nombre Actividad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for actividad in actividades %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ actividad.nombre }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

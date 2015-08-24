@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+Centros de salud
+{% endblock %}
+{% block menu_izp %}
+{% include 'inscripciones/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2> <span class="mif-clipboard icon"></span> Listado de Centros de Salud</h2>
+    <table class="table stripeda bordered hovered">
+        <thead>
+            <tr>
+                <th width="30px">Nro.</th>
+                <th>Centro de Salud</th>
+                <th>Telefono</th>
+                <th>Responsable</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lista in centros %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ lista.nombre }}</td>
+                    <td>{{ lista.telefono }}</td>
+                    <td>{{ lista.responsable }}</td>
+                    <td>
+                        <a href="{% url 'inscripcion.views.add_centro_inscripcion' lista.id %}" class="button success text-shadow">
+                            <span class="mif-plus"></span> Inscripcion
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

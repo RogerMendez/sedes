@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}
+Centros de salud
+{% endblock %}
+
+{% block menu_izp %}
+{% include 'centrosalud/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <div class="row cells1">
+        <div class="cell">
+            <h2> <span class="mif-clipboard icon"></span> DETALLE DEL CENTRO DE SALUD</h2>
+        </div>
+    </div>
+    <div class="row cells4">
+    </div>
+    <div class="row cells4">
+
+        <div class="cell">
+             <strong>NOMBRE:</strong>
+        </div>
+        <div class="cell">
+            <strong>{{ centro.nombre }}</strong>
+        </div>
+    </div>
+    <div class="row cells4">
+
+        <div class="cell">
+             <strong>DIRECCIÓN :</strong>
+        </div>
+        <div class="cell">
+            <strong>{{ centro.direccion }}</strong>
+        </div>
+    </div>
+    <div class="row cells4">
+
+        <div class="cell">
+             <strong>TELEFONO :</strong>
+        </div>
+        <div class="cell">
+            <strong>{{ centro.telefono }}</strong>
+        </div>
+    </div>
+     <div class="row cells4">
+
+        <div class="cell">
+             <strong>RESPONSABLE :</strong>
+        </div>
+        <div class="cell">
+            <strong>{{ centro.responsable }}</strong>
+        </div>
+    </div>
+    <div class="row cells1">
+    <h4><span class="mif-home mif-location"></span>  LOCALIZACION DEL CENTRO DE SALUD</h4>
+    <div id="mapa" style="height: 500px;"></div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script language="javascript">
+    $(document).ready(function(){
+        var map;
+        var centro = new google.maps.LatLng({{ centro.latitud }},{{ centro.longitud }});
+        var geocoder = new google.maps.Geocoder();
+
+        var opciones = {
+            zoom : 15,
+            center: centro,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("mapa"), opciones);
+
+        var marker = new google.maps.Marker({
+            title:"Mi Posicion",
+            map: map,
+            position: centro,//new google.maps.LatLng(centro),
+            animation: google.maps.Animation.DROP
+        });
+        /*google.maps.event.addListener(marker, 'dragend', function(){ openInfoWindow(marker); });
+        google.maps.event.addListener(marker, 'click', function(){ openInfoWindow(marker); });*/
+    });
+    function openInfoWindow(markerdgg){
+        var markerLatLng = markerdgg.getPosition();
+        updatePosition(markerLatLng);
+    }
+    function updatePosition(latLng)
+    {
+        $('#id_latitud').val(latLng.lat());
+        $('#id_longitud').val(latLng.lng());
+    }
+</script>
+    </div>
+{% endblock %}

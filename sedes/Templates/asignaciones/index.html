@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+Inscripciones
+{% endblock %}
+{% block menu_izp %}
+{% include 'inscripciones/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h3>
+        <span class="mif-clipboard icon"></span>Listado de Centros inscritos en la gestion {{ request.session.gestion }}
+    </h3>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th>Gestion</th>
+                <th>Centro de Salud</th>
+                <th>Actividades Asignadas</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for insc in inscripciones %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ insc.gestion.gestion }}</td>
+                    <td>{{ insc.centro.nombre }}</td>
+                    <td class="align-center">
+                        {{ insc.actividad_inscripcion_set.select_related.count }}
+                    </td>
+                    <td>
+                        <a href="{% url 'inscripcion.views.inscripcion_actividad_asignar' insc.id %}" class="">
+                            <span class="mif-plus icon"></span> Asignar
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'inscripcion.views.list_actividades_add_grupo' insc.id %}">
+                            <span class="mif-bin icon"></span>Ver Actividades
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

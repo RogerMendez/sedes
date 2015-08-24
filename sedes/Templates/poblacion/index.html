@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+Poblacion
+{% endblock %}
+{% block menu_izp %}
+{% include 'gestion/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-clipboard icon"></span>Poblaciones en la gestion {{ gestion.gestion }}
+    </h2>
+    <table class="table stripeda bordered sortable-markers-on-left">
+        <thead>
+            <tr>
+                <th class="sortable-column sort-asc">Grupo</th>
+                <th>Grupo de Edad</th>
+                <th>Hombre</th>
+                <th>Mujer</th>
+                <th>Total</th>
+                <th>Porcentaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for po in poblaciones %}
+                {% if po.poblacion_total = True %}
+                    <tr class="info">
+                {% else %}
+                    <tr>
+                {% endif %}
+                    <td class="align-center">{{ po.grupo }}</td>
+                    <td>{{ po.grupo_edad }}</td>
+                    <td class="align-right">{{ po.hombre }}</td>
+                    <td class="align-right">{{ po.mujer }}</td>
+                    <td class="align-right">{{ po.total }}</td>
+                    <td class="align-right">{{ po.porcentaje }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

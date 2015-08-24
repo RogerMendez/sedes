@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+Usuarios
+{% endblock %}
+{% block menu_izp %}
+{% include 'add_users/__menu.html' %}
+{% endblock %}
+{% block cuerpo %}
+    <h2>
+        <span class="mif-users icon"></span>Listado de Usuarios Asignados a un Centro
+    </h2>
+    <table class="table stripeda">
+        <thead>
+            <tr>
+                <th width="30px">#</th>
+                <th>Nombre Usuario</th>
+                <th>Centro de Salud</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c_u in centro_usuario %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ c_u.usuario.username }}</td>
+                    <td>{{ c_u.centro.nombre }}</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
